@@ -6,4 +6,18 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Aggregate\CategoriesAggregate\Entities\" />
+    <Folder Include="Aggregate\CategoriesAggregate\ValueObject\" />
+    <Folder Include="Aggregate\TaskAggregate\Entities\" />
+    <Folder Include="Aggregate\TaskAggregate\Events\" />
+    <Folder Include="Aggregate\TaskAggregate\Factory\" />
+    <Folder Include="Aggregate\TaskAggregate\Repository\" />
+    <Folder Include="Aggregate\TaskAggregate\ValueObjects\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ErrorOr" Version="2.0.1" />
+  </ItemGroup>
+
 </Project>
