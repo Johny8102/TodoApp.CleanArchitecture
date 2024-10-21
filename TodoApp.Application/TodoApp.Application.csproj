@@ -7,11 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Services\Persistence\Command\Interfaces\ICategoryHandlers.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\TodoApp.Domain\TodoApp.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Common\Interfaces\NewFolder\" />
+    <Folder Include="Services\Persistence\Command\Interfaces\" />
+    <Folder Include="Services\Persistence\Query\Interfaces\" />
   </ItemGroup>
 
   <ItemGroup>

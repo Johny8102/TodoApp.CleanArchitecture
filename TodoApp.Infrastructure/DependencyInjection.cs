@@ -13,11 +13,11 @@ namespace ToDoApp.Infrastructure
     {
         public static IServiceCollection InfrastructureServiceProvider(this IServiceCollection services ,ConfigurationManager configuration)
         {
-            services.AddDbContext<TodoDBContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
-            
+            services.AddDbContext<TodoDBContext>(options => options.UseSqlServer("Server=DESKTOP-JP3GS28\\SQLEXPRESS;database=CleanTodo;TrustServerCertificate=True;Trusted_Connection=true;") , ServiceLifetime.Scoped);
+            //Multiple Active Result Sets = True;
 
             services.AddScoped<IUserRepository,UserRepository>();
-
+            services.AddScoped<ICategotyRepository, CategoryRepository>();
             return services;
         }
    

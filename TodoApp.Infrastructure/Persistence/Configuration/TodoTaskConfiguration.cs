@@ -24,7 +24,7 @@ namespace ToDoApp.Infrastructure.Persistence.Configuration
 
             builder.HasMany(option => option.Users).WithMany(option => option.Tasks).UsingEntity(option => option.ToTable("UsersAndTasks"));
             builder.HasMany(option => option.Categories).WithMany(option => option.tasks).UsingEntity(option => option.ToTable("CategoriesAndTasks"));
-            builder.HasOne(option => option.ParentTodoTask).WithMany(option => option.SubTasks).HasForeignKey(option=>option.ParentId).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(option => option.ParentTodoTask).WithMany(option => option.SubTasks).HasForeignKey(option=>option.ParentId).OnDelete(DeleteBehavior.NoAction);
 
 
 

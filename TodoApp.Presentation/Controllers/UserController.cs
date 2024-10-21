@@ -41,16 +41,31 @@ namespace ToDoApp.API.Controllers
                 Tasks = new List<TodoTask>(),
                 Id = 2 
             };
+            var result = _userHandler.CrateUser(user);
+            return View();
+        }
+
+        [HttpGet("GetUser")]
+        public string GetUser()
+        {
+            var user = new User()
+            {
+                Email = "Email2@gmail.com",
+                Name = "Test2",
+                Password = "MODSVOjws2",
+                ParentId =2,
+                
+            };
 
             var result = _userHandler.CrateUser(user);
 
 
 
 
-
-            return View();
-
+            return "hello It's me";
         }
+
+
 
 
         

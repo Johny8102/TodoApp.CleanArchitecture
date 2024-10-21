@@ -20,7 +20,6 @@ namespace ToDoApp.Infrastructure.Persistence.Repositories
         {
             _todoDBContext.User.Add(user);
             _todoDBContext.SaveChanges();
-
         }
 
         public List<User> GetAllUsers()

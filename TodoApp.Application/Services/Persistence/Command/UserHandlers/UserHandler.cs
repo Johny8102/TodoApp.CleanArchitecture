@@ -21,15 +21,21 @@ namespace ToDoApp.Application.Services.Persistence.Command.UserHandlers
 
 
 
-        async Task<ErrorOr<User>> IUserHandler.CrateUser(User user)
+        async Task<User> IUserHandler.CrateUser(User user)
         {
             //check if user dose not exists
 
-            
+            try
+            {
+                _userRepository.AddUser(user);
 
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
             //create user
 
-            _userRepository.AddUser(user);
 
             return user;
 

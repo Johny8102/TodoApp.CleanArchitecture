@@ -10,7 +10,7 @@ namespace ToDoApp.Application.Services.Persistence.Command.UserHandlers
 {
     public interface IUserHandler
     {
-        Task<ErrorOr<User>> CrateUser(User user);
+        Task<User> CrateUser(User user);
 
 
 
