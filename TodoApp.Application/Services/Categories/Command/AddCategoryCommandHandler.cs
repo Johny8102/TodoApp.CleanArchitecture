@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using MapsterMapper;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,22 +14,19 @@ namespace TodoApp.Application.Services.Categories.Command
     {
 
         private readonly ICategotyRepository _categotyRepository;
+        private readonly IMapper _mapper;
 
-        public AddCategoryCommandHandler(ICategotyRepository categotyRepository)
+        public AddCategoryCommandHandler(ICategotyRepository categotyRepository , IMapper mapper)
         {
+            _mapper = mapper;
             _categotyRepository = categotyRepository;
         }
 
         public async Task<bool> Handle(AddCategoryCommand request, CancellationToken cancellationToken)
         {
-            var catEntitiy = new Category()
-            {
-                Id = request.Id,
-                Name = request.Name,
-                IsActive = request.IsActive
-            };
+            var temp = _mapper.Map<Category>(request);
 
-            _categotyRepository.AddCategory(catEntitiy);
+            _categotyRepository.AddCategory(temp);
 
             return true;
         }

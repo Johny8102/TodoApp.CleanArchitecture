@@ -4,6 +4,7 @@ using TodoApp.Application.Services.Categories.Command;
 using TodoApp.Application.Services.Categories.Query;
 using ToDoApp.Application.Common.Entities;
 using Microsoft.Extensions.Configuration;
+using TodoApp.Application.Common.Mapping;
 
 
 namespace ToDoApp.Application
@@ -14,7 +15,7 @@ namespace ToDoApp.Application
         {
             
             service.AddMediatR(cfg=>cfg.RegisterServicesFromAssemblies(typeof(AddCategoryCommandHandler).Assembly));
-            
+            MappingDependencyInjection.ApplicationMapperProvider(service);
             //service.AddSingleton<IMediator , Mediator>();
             //service.AddScoped<IRequestHandler<AddCategoryCommand>, AddCategoryCommandHandler>();
             //service.AddScoped<IRequestHandler<GetAllCategoryQuery, List<Category>>, GetAllCategoryQueryHandler>();

@@ -1,9 +1,12 @@
+using TodoApp.Presentation.Common.Mapping;
 using ToDoApp.Application;
 using ToDoApp.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 {
     builder.Services.AddControllersWithViews();
+    builder.Services.PresentationMappingProvider();
+    
     builder.Services.ApplicationServiceProvider()
         .InfrastructureServiceProvider(builder.Configuration);
 

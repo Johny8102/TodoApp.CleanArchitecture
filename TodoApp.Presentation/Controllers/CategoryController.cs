@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using TodoApp.Application.Services.Categories.Command;
 using TodoApp.Application.Services.Categories.Query;
 using ToDoApp.Presentation.Common.Entities;
+using MapsterMapper;
 
 namespace ToDoApp.API.Controllers
 {
@@ -19,19 +20,25 @@ namespace ToDoApp.API.Controllers
         //Query :   Allcategories    -     Asigned Tasks to a category     -     
 
         private readonly IMediator _imediatr;
+        private readonly IMapper _mapper;
 
-        public CategoryController(IMediator imediatr)
+        public CategoryController(IMediator imediatr , IMapper mapper)
         {
+            _mapper = mapper;
             _imediatr = imediatr;
         }
 
         [HttpPost("AddCategory")]
         public async Task<IActionResult> AddCategory(CategoryPresentation category)
         {
-            var temp = new AddCategoryCommand(
-                category.Id  , category.Name , category.IsActive);
+            //var temp = new AddCategoryCommand(
+            //    category.Id  , category.Name , category.IsActive);
 
-            await _imediatr.Send(temp);
+            var temp2 = _mapper.Map<AddCategoryCommand>(category);
+
+
+
+            await _imediatr.Send(temp2);
 
 
 
