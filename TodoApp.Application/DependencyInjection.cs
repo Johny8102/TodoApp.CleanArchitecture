@@ -1,20 +1,23 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using TodoApp.Application.Services.Persistence.Query.Categories;
-using ToDoApp.Application.Common.Interfaces.Persistence;
-using ToDoApp.Application.Services.Persistence.Command.UserHandlers;
-
+using MediatR;
+using TodoApp.Application.Services.Categories.Command;
+using TodoApp.Application.Services.Categories.Query;
+using ToDoApp.Application.Common.Entities;
+using Microsoft.Extensions.Configuration;
 
 
 namespace ToDoApp.Application
 {
     public static class DependencyInjection 
     {
-        public static IServiceCollection ApplicationServiceProvider(this IServiceCollection service)
+        public static IServiceCollection ApplicationServiceProvider(this IServiceCollection service  )
         {
-
             
-            service.AddScoped<IUserHandler , UserHandler>();
-            service.AddScoped<ICategoryHandler, CategoryHandler>();
+            service.AddMediatR(cfg=>cfg.RegisterServicesFromAssemblies(typeof(AddCategoryCommandHandler).Assembly));
+            
+            //service.AddSingleton<IMediator , Mediator>();
+            //service.AddScoped<IRequestHandler<AddCategoryCommand>, AddCategoryCommandHandler>();
+            //service.AddScoped<IRequestHandler<GetAllCategoryQuery, List<Category>>, GetAllCategoryQueryHandler>();
 
 
             return service;
@@ -22,4 +25,5 @@ namespace ToDoApp.Application
 
 
     }
+
 }

@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using TodoApp.Application.Services.Persistence.Query.Categories;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using TodoApp.Application.Services.Categories.Command;
+using TodoApp.Application.Services.Categories.Query;
+using ToDoApp.Presentation.Common.Entities;
 
 namespace ToDoApp.API.Controllers
 {
@@ -9,17 +12,30 @@ namespace ToDoApp.API.Controllers
         //                                         In this controller : 
 
         //User must be able to add new categories , Delete , Update , see availabale categories
-        //User must be able to see what tasks are asigned to specific task
+        //User must be able to see what tasks are asigned to specific Categories
 
 
         //Command : AddCategory    -    UpdateCategory     -     DeleteCategory     
         //Query :   Allcategories    -     Asigned Tasks to a category     -     
 
-        private readonly ICategoryHandler _categories;
+        private readonly IMediator _imediatr;
 
-        public CategoryController(ICategoryHandler category)
+        public CategoryController(IMediator imediatr)
         {
-            _categories = category;
+            _imediatr = imediatr;
+        }
+
+        [HttpPost("AddCategory")]
+        public async Task<IActionResult> AddCategory(CategoryPresentation category)
+        {
+            var temp = new AddCategoryCommand(
+                category.Id  , category.Name , category.IsActive);
+
+            await _imediatr.Send(temp);
+
+
+
+            return View(category);
         }
 
 
@@ -30,12 +46,10 @@ namespace ToDoApp.API.Controllers
         [HttpGet("All")]
         public string GetAllCategories()
         {
+            var cats = _imediatr.Send(new GetAllCategoryQuery());
 
-            var cats = _categories.getAllCategories();
 
             return "Hellpppo pleisia";
-
-
         }
 
 

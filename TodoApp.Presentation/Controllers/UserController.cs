@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ToDoApp.Application.Common.Entities;
-using ToDoApp.Application.Services.Persistence.Command.UserHandlers;
+
+
 
 namespace ToDoApp.API.Controllers
 {
@@ -23,41 +23,41 @@ namespace ToDoApp.API.Controllers
         //==========================================================================================================
         //==========================================================================================================
 
-        private readonly IUserHandler _userHandler;
+        //private readonly IUserHandler _userHandler;
 
-        public UserController(IUserHandler userHandler)
-        {
-            _userHandler = userHandler;
-        }
+        //public UserController(IUserHandler userHandler)
+        //{
+        //    _userHandler = userHandler;
+        //}
 
         [HttpPost("Create")]
         public IActionResult createUser()
         {
-            var user = new User()
-            {
-                Email = "Email@gmail.com",
-                Name = "Test",
-                Password = "MODSVOjws",
-                Tasks = new List<TodoTask>(),
-                Id = 2 
-            };
-            var result = _userHandler.CrateUser(user);
+            //var user = new User()
+            //{
+            //    Email = "Email@gmail.com",
+            //    Name = "Test",
+            //    Password = "MODSVOjws",
+            //    Tasks = new List<TodoTask>(),
+            //    Id = 2 
+            //};
+            //var result = _userHandler.CrateUser(user);
             return View();
         }
 
         [HttpGet("GetUser")]
         public string GetUser()
         {
-            var user = new User()
-            {
-                Email = "Email2@gmail.com",
-                Name = "Test2",
-                Password = "MODSVOjws2",
-                ParentId =2,
+            //var user = new User()
+            //{
+            //    Email = "Email2@gmail.com",
+            //    Name = "Test2",
+            //    Password = "MODSVOjws2",
+            //    ParentId =2,
                 
-            };
+            //};
 
-            var result = _userHandler.CrateUser(user);
+            //var result = _userHandler.CrateUser(user);
 
 
 
